@@ -3,7 +3,10 @@ var router = express.Router();
 var models = require('../models');
 var Page = models.Page; 
 var User = models.User; 
+var userRouter=require('./users');
 
+
+router.use('/users',userRouter);
 
 router.get('/', function(req, res, next) {
 	res.redirect('/');
@@ -63,6 +66,8 @@ router.get('/:urlName', function(req, res, next) {
 	})
 	.catch(next);
 })
+
+
 
 module.exports = router;
 
