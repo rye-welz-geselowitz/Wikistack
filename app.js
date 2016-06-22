@@ -42,7 +42,7 @@ app.get('/',function(req,res,next){
 })
 
 //Syncing & Listening
-models.User.sync({ force: true }) 
+models.User.sync({}) //{ force: true } 
 .then(function () {
     return models.Page.sync({}) //{ force: true }
 })

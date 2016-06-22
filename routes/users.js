@@ -10,8 +10,8 @@ var Promise=require('bluebird');
 router.get('/',function(req,res,next){
 	User.findAll()
 	.then(function(users){
-		res.send(users);
-		//res.render('users',{users: users})
+		//res.send(users);
+		res.render('users',{users: users})
 	})
 	.catch(next);
 });
