@@ -1,0 +1,33 @@
+{
+  "name": "Wikistack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sarahwelzgeselowitz/Wikistack.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sarahwelzgeselowitz/Wikistack/issues"
+  },
+  "homepage": "https://github.com/sarahwelzgeselowitz/Wikistack#readme",
+  "dependencies": {
+    "bluebird": "^3.4.1",
+    "marked": "^0.3.5",
+    "morgan": "^1.7.0",
+    "pg": "^5.2.0",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^3.23.3",
+    "swig": "^1.4.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.9.2"
+  }
+}

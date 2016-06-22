@@ -3,10 +3,7 @@ var router = express.Router();
 var models = require('../models');
 var Page = models.Page; 
 var User = models.User; 
-var userRouter=require('./users');
 
-
-router.use('/users',userRouter);
 
 router.get('/', function(req, res, next) {
 	res.redirect('/');
@@ -30,6 +27,7 @@ User.findOrCreate({
   	var page = Page.build({
 	    title: req.body.title,
 	    content: req.body.content,
+	    tags:req.body.tags.split(","),
 	    authorId: result[0].id
 	  })
   	return page.save();
@@ -43,6 +41,23 @@ User.findOrCreate({
 
 router.get('/add', function(req, res, next) {
 	res.render('addpage');
+});
+
+
+router.get('/:urlName/similar',function(req,res,next){
+	Page.findAll({
+			where: {
+				urlTitle: req.params.urlName
+			}
+		}).then(function(result){
+			var tags=[];
+			result.forEach(function(a){tags.push(a.tags.join())});
+			var tagsArray=tags[0].split(",");
+			var query=tagsArray.join('_');
+			res.redirect('/search/read/?tag='+query);
+
+		})
+	//
 });
 
 router.get('/:urlName', function(req, res, next) {

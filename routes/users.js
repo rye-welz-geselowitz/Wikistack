@@ -10,13 +10,28 @@ var Promise=require('bluebird');
 router.get('/',function(req,res,next){
 	User.findAll()
 	.then(function(users){
-		res.render('users',{users: users})
+		res.send(users);
+		//res.render('users',{users: users})
 	})
 	.catch(next);
 });
 
 router.get('/:id',function(req,res,next){
-	res.send(req.params.id);
+	var userPromise=User.findById(req.params.id);
+	var pagesPromise=Page.findAll({
+		where: {
+			authorId:req.params.id
+		}
+	});
+	Promise.all([userPromise,pagesPromise])
+	.then(function(values){
+		var user=values[0];
+		var pages=values[1];
+		res.render('single_user',{user:user, pages:pages})
+	})
+	.catch(next);
+	//res.send(req.params.id);
+
 });
 
 
